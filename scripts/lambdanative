@@ -14,10 +14,11 @@ if [ ! -d $LAMBDANATIVE ] || [ ! -d $LAMBDANATIVE/apps ]; then
   exit
 fi
 
-iHERE=`pwd`
-if [ "$LAMBDANATIVE" = "$HERE" ]; then
-    echo "ERROR: Please don't run this script from the installation folder"
-    exit
+if [ "X$LAMBDANATIVE" = "X$PWD" ]; then
+  echo "ERROR: Current location and SDKROOT are identical"
+  echo "       This would overwrite the configure script! Please"
+  echo "       create a new folder and run:  lambdanative init"
+  exit
 fi
 
 cmd=$1
